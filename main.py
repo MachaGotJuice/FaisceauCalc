@@ -18,9 +18,6 @@ def handle_file_upload_graphe(file):
 def handle_file_upload_noeuds(file):
     global noeuds
     noeuds = file.name
-    print('*************')
-    print(file.name)
-    print('************')
     with open(file.name, 'r') as f:
         content = f.read()
         text_area_noeuds.set_value(content)
