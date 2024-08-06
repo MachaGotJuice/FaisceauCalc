@@ -1,5 +1,6 @@
 import streamlit as st
 import chardet
+import os
 from csv_to_graph import *
 from nodes_to_distance import *
 from csv_to_nodes import *
@@ -18,10 +19,11 @@ def detect_encoding(file):
 
 def handle_file_upload_graphe(file):
     global graphe
-    graphe = file.name
+    graphe = os.path.join(os.path.dirname(__file__),file.name)
     encoding = detect_encoding(file) or 'utf-8'  # Use 'utf-8' as a default encoding if detection fails
     try:
         content = file.read().decode(encoding)
+        
     except UnicodeDecodeError:
         encoding = 'latin-1'  # Fallback to 'latin-1' if 'utf-8' fails
         content = file.read().decode(encoding)
@@ -30,7 +32,7 @@ def handle_file_upload_graphe(file):
 
 def handle_file_upload_noeuds(file):
     global noeuds
-    noeuds = file.name
+    noeuds = os.path.join(os.path.dirname(__file__), file.name)
     encoding = detect_encoding(file) or 'utf-8'  # Use 'utf-8' as a default encoding if detection fails
     try:
         content = file.read().decode(encoding)
