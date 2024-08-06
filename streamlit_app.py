@@ -18,7 +18,7 @@ def detect_encoding(file):
 
 def handle_file_upload_graphe(file):
     global graphe
-    graphe = os.path.join(os.path.dirname(__file__), file.name)
+    graphe = file.name
     encoding = detect_encoding(file) or 'utf-8'  # Utilise 'utf-8' comme encodage par défaut si la détection échoue
     try:
         content = file.read().decode(encoding)
